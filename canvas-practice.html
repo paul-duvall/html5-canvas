@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML Canvas and basic shapes</title>
+  
+  <style>
+    
+    #canvas {
+      border: 1px solid #999;
+      margin: 1rem auto;
+      display: block;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  
+  <canvas id="canvas"></canvas>
+
+  <script>
+    let canvas, ctx;
+
+    document.addEventListener('DOMContentLoaded', (ev) => {
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d'); // webgl, webgl2 are other options
+      canvas.width = 600;
+      canvas.height = 400;
+
+      // Call function to draw a rectangle
+      // drawRect();
+
+      // Call function to draw an ellipse
+      drawEllipse();
+
+    });
+
+    const drawRect = function() {
+      ctx.rect(300, 100, 100, 50); // x coordinate, y coordinate, width, height
+
+      // Define the fill
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 10;
+
+      // Define the stroke
+      ctx.fillStyle = 'skyblue';
+
+      // Fill and stroke
+      ctx.fill();
+      ctx.stroke();
+
+      // Draw a rect fill or stroke without specifying fill / stroke separately
+      ctx.fillRect(200, 300, 100, 50);  
+      ctx.strokeRect(100, 100, 100, 50);
+
+      // Delete a rectangle / rectangular space
+      ctx.clearRect(150, 50, 100, 500);
+    }
+
+    const drawEllipse = function() {
+      ctx.beginPath();
+      // Ellipse accepts the following parameters - x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise
+      ctx.ellipse(200, 200, 100, 100, 0, 0, (Math.PI*2), false);
+      
+      ctx.fillStyle = 'thistle';
+      ctx.fill();
+
+      ctx.beginPath();
+      // Arc accepts the following parameters - x, y, radius, startAngle, endAngle, anticlockwise
+      ctx.arc(400, 200, 50, 0, (Math.PI), false);
+
+      ctx.strokeStyle = 'LightSkyBlue';
+      ctx.lineWidth = 5;
+      ctx.stroke();
+    }
+
+  </script>
+</body>
+</html>
